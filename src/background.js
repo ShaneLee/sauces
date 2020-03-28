@@ -1,4 +1,5 @@
 let count = 0
+getBlockedSites()
 chrome.webRequest.onBeforeRequest.addListener(
         blockSources,
         {urls: ["<all_urls>"]},
@@ -28,15 +29,21 @@ function parseQueryKeywords(details) {
 
 function insertBannedSources(keywords) {
 	negateSite = '+-site:'
-	return concatKeywords(keywords) + negateSite + getBannedSources().join(negateSite)
+	return concatKeywords(keywords) + negateSite + getBlockedSites().join(negateSite)
 }
 
 function concatKeywords(keywords) {
 	return typeof keywords === 'string' ? keywords : keywords.join('+')
 }
 
-function getBannedSources() {
-	return ['businessinsider.com', 'dailymail.co.uk', 'dailyexpress.co.uk', 'fool.co.uk']
+function setBlockedSites() {
+	chrome.storage.sync.set({ blockedSites: ['businessinsider.com', 'dailymail.co.uk', 'dailyexpress.co.uk', 'fool.co.uk']})
+}
+
+function getBlockedSites() {
+	chrome.storage.sync.get('blockedSites', (data) => {
+         console.log(data)
+    })
 }
 
 // In future will need to parse what the search engine is 
