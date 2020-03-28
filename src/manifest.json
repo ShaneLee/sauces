@@ -2,5 +2,9 @@
     "name": "Block Search Sources",
     "version": "1.0",
     "description": "A chrome extension which blocks user-specified sites from showing up in the results.",
+	"permissions": ["webRequest", "webRequestBlocking", "*://*/*"],
+	"background": {
+      "scripts": ["background.js"]
+    },
     "manifest_version": 2
   }
