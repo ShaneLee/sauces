@@ -1,9 +1,12 @@
+'use strict';
+
 let count = 0
-getBlockedSites()
+blockedSites.set([])
+
 chrome.webRequest.onBeforeRequest.addListener(
         blockSources,
         {urls: ["<all_urls>"]},
-        ["blocking"]);
+        ["blocking"])
 
 function blockSources(details) {
 	count++
@@ -18,7 +21,7 @@ function isSearch(details) {
 }
 
 function buildSearch(details) {
-	searchUrl = 'https://www.google.com/search?q='
+	const searchUrl = 'https://www.google.com/search?q='
 	return searchUrl + insertBannedSources(parseQueryKeywords(details))
 }
 
@@ -28,7 +31,7 @@ function parseQueryKeywords(details) {
 }
 
 function insertBannedSources(keywords) {
-	negateSite = '+-site:'
+	const negateSite = '+-site:'
 	return concatKeywords(keywords) + negateSite + getBlockedSites().join(negateSite)
 }
 
@@ -36,15 +39,17 @@ function concatKeywords(keywords) {
 	return typeof keywords === 'string' ? keywords : keywords.join('+')
 }
 
-function setBlockedSites() {
+function setBlockedSites(sites) {
+	console.log(sites)
 	chrome.storage.sync.set({ blockedSites: ['businessinsider.com', 'dailymail.co.uk', 'dailyexpress.co.uk', 'fool.co.uk']})
 }
 
 function getBlockedSites() {
 	chrome.storage.sync.get('blockedSites', (data) => {
-         console.log(data)
-    })
+		 return data.blockedSites
+	})
 }
+
 
 // In future will need to parse what the search engine is 
 // for now - just google.

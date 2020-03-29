@@ -1,5 +1,6 @@
 describe('Test taking a search query and appending banned sources to it', () => {
 	beforeEach(() => {
+		spyOn(window, 'getBlockedSites').and.returnValue(['businessinsider.com', 'dailymail.co.uk', 'dailyexpress.co.uk', 'fool.co.uk'])
 		count = 0
 	})
 
