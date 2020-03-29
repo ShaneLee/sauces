@@ -9,7 +9,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 
 function blockSources(details) {
 	count++
-	setTimeout(function() { count = 0 }, 100);
+	setTimeout(() => { count = 0 }, 100);
 	if (count == 1 && isSearch(details)) {
 		return {redirectUrl: buildSearch(details)}
 	}
