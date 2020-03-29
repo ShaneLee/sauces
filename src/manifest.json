@@ -6,6 +6,6 @@
 	"background": {
       "scripts": ["background.js"]
     },
-	"web_accessible_resources": ["BlockedSites.js"],
+	"options_page": "options/options.html",
     "manifest_version": 2
   }

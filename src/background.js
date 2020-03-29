@@ -1,7 +1,7 @@
 'use strict';
 
 let count = 0
-blockedSites.set([])
+setBlockedSites([])
 
 chrome.webRequest.onBeforeRequest.addListener(
         blockSources,
