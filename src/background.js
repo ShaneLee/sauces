@@ -1,7 +1,6 @@
-'use strict';
+'use strict'
 
 let count = 0
-setBlockedSites([])
 
 chrome.webRequest.onBeforeRequest.addListener(
         blockSources,
@@ -37,11 +36,6 @@ function insertBannedSources(keywords) {
 
 function concatKeywords(keywords) {
 	return typeof keywords === 'string' ? keywords : keywords.join('+')
-}
-
-function setBlockedSites(sites) {
-	console.log(sites)
-	chrome.storage.sync.set({ blockedSites: ['businessinsider.com', 'dailymail.co.uk', 'dailyexpress.co.uk', 'fool.co.uk']})
 }
 
 function getBlockedSites() {
