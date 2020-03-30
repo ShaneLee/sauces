@@ -1,8 +1,7 @@
 function save_options() {
-  const blockedSites = document.getElementById('blocked-sites').value.split('\n')
   chrome.storage.sync.set({
-    blockedSites: blockedSites
-  }, function() {
+    blockedSites: document.getElementById('blocked-sites').value.split('\n')
+  }, () => {
     const status = document.getElementById('status')
     status.textContent = 'Options saved.'
     setTimeout(() => {
@@ -13,7 +12,7 @@ function save_options() {
 
 function restore_options() {
   chrome.storage.sync.get('blockedSites', (data) => {
-    document.getElementById('blocked-sites').value = data.blockedSites.join('\n')
+    document.getElementById('blocked-sites').value = !data.blockedSites ? '' : data.blockedSites.join('\n')
   })
 }
 

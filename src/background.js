@@ -1,4 +1,6 @@
 'use strict'
+// In future will need to parse what the search engine is 
+// for now - just google.
 
 let count = 0
 
@@ -40,11 +42,11 @@ function concatKeywords(keywords) {
 
 function getBlockedSites() {
 	chrome.storage.sync.get('blockedSites', (data) => {
-		 return data.blockedSites
+		 return !data.blockedSites ? [''] : data.blockedSites
 	})
 }
 
+chrome.runtime.onInstalled.addListener((details) => { 
+	chrome.tabs.create({url: 'chrome-extension://bmnedkngmdcipfkdfcabjkccfpcjghoi/options/options.html'})
+})
 
-// In future will need to parse what the search engine is 
-// for now - just google.
-//search?q=shane+-site%3Adailymail.co.uk 
