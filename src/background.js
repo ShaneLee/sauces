@@ -4,6 +4,14 @@
 
 let count = 0
 
+let blockedSites = setBlockedSites()
+
+chrome.storage.onChanged.addListener((changes, area) => {
+	if (changes === 'sync') {
+		!changes.blockedSites ? [''] : changes.blockedSites
+	}
+})
+
 chrome.webRequest.onBeforeRequest.addListener(
         blockSources,
         {urls: ["<all_urls>"]},
@@ -18,7 +26,7 @@ function blockSources(details) {
 }
 
 function isSearch(details) {
-	return details.url.includes('www.google.') && details.url.includes('search?q=')
+	return details.url.includes('www.google.') && details.url.includes('search?')
 }
 
 function buildSearch(details) {
@@ -27,8 +35,7 @@ function buildSearch(details) {
 }
 
 function parseQueryKeywords(details) {
-	const query = details.url.split('search?q=').pop().split('&oq=').shift()
-	return query.split('+')
+	return details.url.split('search?q=').pop().split('&oq=').shift().split('+')
 }
 
 function insertBannedSources(keywords) {
@@ -41,8 +48,12 @@ function concatKeywords(keywords) {
 }
 
 function getBlockedSites() {
+	return blockedSites
+}
+
+function setBlockedSites() {
 	chrome.storage.sync.get('blockedSites', (data) => {
-		 return !data.blockedSites ? [''] : data.blockedSites
+		 blockedSites = !data.blockedSites ? [''] : data.blockedSites
 	})
 }
 
