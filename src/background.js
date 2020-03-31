@@ -58,6 +58,6 @@ function setBlockedSites() {
 }
 
 chrome.runtime.onInstalled.addListener((details) => { 
-	chrome.tabs.create({url: 'chrome-extension://bmnedkngmdcipfkdfcabjkccfpcjghoi/options/options.html'})
+	chrome.tabs.create({url: 'chrome-extension://bmnedkngmdcipfkdfcabjkccfpcjghoi/welcome/welcome.html'})
 })
 
