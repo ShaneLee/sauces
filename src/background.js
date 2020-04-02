@@ -18,6 +18,9 @@ chrome.webRequest.onBeforeRequest.addListener(
         ["blocking"])
 
 function blockSources(details) {
+	if (!isSearch(details)) {
+		return
+	}
 	count++
 	setTimeout(() => { count = 0 }, 100);
 	if (count == 1 && isSearch(details)) {
