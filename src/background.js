@@ -23,7 +23,7 @@ function blockSources(details) {
 	}
 	count++
 	setTimeout(() => { count = 0 }, 100);
-	if (count == 1 && isSearch(details)) {
+	if (count == 1) {
 		return {redirectUrl: buildSearch(details)}
 	}
 }
