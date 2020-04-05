@@ -1,5 +1,5 @@
   {
-    "name": "Block Search Sources",
+    "name": "Sauces",
     "version": "1.0",
     "description": "A chrome extension which blocks user-specified sites from showing up in the results.",
 	"permissions": ["storage", "webRequest", "webRequestBlocking", "*://*/*"],
@@ -8,7 +8,7 @@
     },
 	"options_page": "options/options.html",
 	"icons": { "16": "assets/img/icon-16.png",
-           "48": "assets/img/icon-48.png",
-          "128": "assets/img/icon-128.png" },
+			   "48": "assets/img/icon-48.png",
+			   "128": "assets/img/icon-128.png" },
     "manifest_version": 2
   }
