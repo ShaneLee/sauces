@@ -1,19 +1,32 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>Welcome</title>
-	</head>
-<body>
-	<h1>Thank You For Installing</h1> 
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Block Sources</title>
 
-	<p>With this extension you can prevent websites from appearing in your search results.</p>
+        <link href="../css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
 
-	<p>All you have to do is specify the sites you want to remove. You can configure this at any time from the extension options page.</p>
+        <header class="masthead">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center justify-content-center text-center">
+                    <div class="col-lg-10 align-self-end">
+                        <h1 class="text-uppercase text-white font-weight-bold">Thank You For Installing</h1>
+                        <hr class="divider my-4" />
+                    </div>
+                    <div class="col-lg-8 align-self-baseline">
+                        <p class="text-white-75 font-weight-light mb-5">With this extension you can prevent websites from appearing in your search results. All you have to do is specify the sites you want to remove. You can configure this at any time from the extension options page.</p>
+												<form action="chrome-extension://bmnedkngmdcipfkdfcabjkccfpcjghoi/options/options.html">
+													<button class="btn btn-primary btn-xl js-scroll-trigger" id="sites" type="submit" >Specify Sites</button>
+												</form>
+                    </div>
+                </div>
+            </div>
+        </header>
 
-	<form action="chrome-extension://bmnedkngmdcipfkdfcabjkccfpcjghoi/options/options.html">
-		<button id="sites" type="submit" >Specify Sites</button>
-	</form>
-
-</body>
+    </body>
 </html>
-
