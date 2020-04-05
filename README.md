@@ -1,3 +1,3 @@
 # Sauce
 
-![src/assets/img/banner.png]
+<img src="src/assets/img/banner.png"/>
