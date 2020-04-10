@@ -33,7 +33,7 @@ function hasBlockedSources(element) {
 }
 
 function getBlockedSites() {
-	return blockedSites
+	return !blockedSites ? [''] : blockedSites
 }
 
 function setBlockedSites() {
