@@ -9,7 +9,7 @@ describe('Test taking a search page hiding blocked sources', () => {
 	})
 
 	it('should block 0 source when no source contains dailymail.co.uk', () => {
-		spyOn(document, 'getElementsByClassName').and.returnValue(TestData.getSearchElements(TestData.dailyMailCoUk()))
+		spyOn(document, 'getElementsByClassName').and.returnValue(TestData.getSearchElements(TestData.speedTestCom()))
 		expect(block()).toEqual(0)
 	})
 
