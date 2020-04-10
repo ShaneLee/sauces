@@ -11,8 +11,7 @@ function block() {
 
 	let countOfBlockedElements = 0
 	for (const element of elements) {
-		if (element && element.innerText && element.innerText.includes('dailymail.co.uk'))
-		{
+		if (shouldBlock(element)) {
 			element.setAttribute("style", "display:none;")
 			countOfBlockedElements++
 		}
@@ -20,6 +19,18 @@ function block() {
 	return countOfBlockedElements
 }
 
+function shouldBlock(element) {
+	return element && element.innerText && hasBlockedSources(element)	
+}
+
+function hasBlockedSources(element) {
+	for (const source of getBlockedSites()) {
+		if (element.innerText.includes(source)) {
+			return true
+		}
+	}
+	return false
+}
 
 function getBlockedSites() {
 	return blockedSites
