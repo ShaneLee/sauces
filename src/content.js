@@ -6,7 +6,9 @@ window.onload=block()
 
 function block() {
 	const elements = document.getElementsByClassName('g')
-	
+
+	if (!elements) { return 0 }
+
 	let countOfBlockedElements = 0
 	for (const element of elements) {
 		if (element && element.innerText && element.innerText.includes('dailymail.co.uk'))
