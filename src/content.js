@@ -49,3 +49,5 @@ function setBlockedSites() {
 		block()
 	})
 }
+
+setTimeout(() => { block() }, 3000) // bodge for google finance
