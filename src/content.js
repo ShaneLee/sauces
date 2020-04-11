@@ -2,28 +2,21 @@
 
 let blockedSites = setBlockedSites()
 
-window.onload=init()
-
-function init() {
-	setBlockedSites()
-	block()
-}
-
 function block() {
-	const elements = document.getElementsByClassName('g')
+	const elements = findElements()
 
 	if (inputsValid(elements, getBlockedSites())) { return 0 }
 
-	return [...elements].filter(element => shouldBlock(element))
+	return elements.filter(element => shouldBlock(element))
 				   .map(element => hide(element)).length
 }
 
 function shouldBlock(element) {
-	return element && element.innerText && hasBlockedSources(element)	
+	return element && element.innerHTML && hasBlockedSources(element)	
 }
 
 function hasBlockedSources(element) {
-	return getBlockedSites().filter(source => element.innerText.includes(source)).length > 0
+	return getBlockedSites().filter(source => element.innerHTML.includes(source)).length > 0
 }
 
 function hide(element) {
@@ -34,12 +27,25 @@ function inputsValid(elements, blockedSites) {
 	return !elements || !blockedSites || blockedSites.length === 0
 }
 
+function findElements() {
+	return [...findSearchListings(), ...findSearchCards()]
+}
+
+function findSearchCards() {
+	return !document.getElementsByTagName('g-inner-card') ? [] : document.getElementsByTagName('g-inner-card')
+}
+
+function findSearchListings() {
+	return !document.getElementsByClassName('g') ? [] : document.getElementsByClassName('g')
+}
+
 function getBlockedSites() {
 	return blockedSites
 }
 
 function setBlockedSites() {
 	chrome.storage.sync.get('blockedSites', (data) => {
-		 blockedSites = !data.blockedSites ? [] : data.blockedSites
+		blockedSites = !data.blockedSites ? [] : data.blockedSites
+		block()
 	})
 }

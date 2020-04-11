@@ -1,5 +1,6 @@
 describe('Test taking a search page hiding blocked sources', () => {
 	beforeEach(() => {
+		spyOn(document, 'getElementsByTagName').and.returnValue([])
 	})
 
 	it('should block 2 search element that contains 2 blocked sources', () => {
@@ -52,7 +53,7 @@ class TestData {
 	}
 
 	static createElement(element) {
-		return {'innerText': element, 'setAttribute': () => { return }}
+		return {'innerHTML': element, 'setAttribute': () => { return }}
 	}
 
 	static speedTest() {
