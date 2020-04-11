@@ -24,12 +24,7 @@ function shouldBlock(element) {
 }
 
 function hasBlockedSources(element) {
-	for (const source of getBlockedSites()) {
-		if (element.innerText.includes(source)) {
-			return true
-		}
-	}
-	return false
+	return getBlockedSites().filter(source => element.innerText.includes(source)).length > 0
 }
 
 function getBlockedSites() {
