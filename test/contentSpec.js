@@ -52,6 +52,21 @@ describe('Test taking a search page hiding blocked sources', () => {
 	})
 })
 
+describe('Test converting user-entered sources to array', () => {
+	it('should take a list of sources and convert it to an array', () => {
+		const sources = 'dailymail.co.uk\nbusinessinsider.com\nfool.co.uk\nexpress.co.uk'
+		spyOn(document, 'getElementById').and.returnValue(sources)
+		expect(sourcesToArray(sources)).toEqual(['dailymail.co.uk', 'businessinsider.com', 'fool.co.uk', 'express.co.uk'])
+	})
+
+	it('should take a list of sources with an empty line and convert it to an array', () => {
+		const sources = 'dailymail.co.uk\nbusinessinsider.com\nfool.co.uk\nexpress.co.uk\n'
+		spyOn(document, 'getElementById').and.returnValue(sources)
+		expect(sourcesToArray(sources)).toEqual(['dailymail.co.uk', 'businessinsider.com', 'fool.co.uk', 'express.co.uk'])
+	})
+})
+
+
 class TestData {
 
 	static getSearchElements(...searchElements) {
