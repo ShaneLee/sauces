@@ -2,10 +2,14 @@
     "name": "Sauces",
     "version": "1.0",
     "description": "A chrome extension which blocks user-specified sites from showing up in the results.",
-	"permissions": ["storage", "webRequest", "webRequestBlocking", "*://*/*"],
+	"permissions": ["storage"],
 	"background": {
       "scripts": ["background.js"]
     },
+	"content_scripts": [{
+  		"matches": ["*://*.google.com/*"],
+  		"js": ["content.js"]
+	}],
 	"options_page": "options/options.html",
 	"icons": { "16": "assets/img/icon-16.png",
 			   "48": "assets/img/icon-48.png",
