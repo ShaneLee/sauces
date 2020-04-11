@@ -24,7 +24,7 @@ function hide(element) {
 }
 
 function inputsValid(elements, blockedSites) {
-	return !elements || !blockedSites || blockedSites.length === 0
+	return !elements || !blockedSites
 }
 
 function findElements() {
