@@ -7,7 +7,7 @@ window.onload=block()
 function block() {
 	const elements = document.getElementsByClassName('g')
 
-	if (!elements) { return 0 }
+	if (!elements && getBlockedSites().length > 0) { return 0 }
 
 	let countOfBlockedElements = 0
 	for (const element of elements) {
@@ -28,11 +28,11 @@ function hasBlockedSources(element) {
 }
 
 function getBlockedSites() {
-	return !blockedSites ? [''] : blockedSites
+	return blockedSites
 }
 
 function setBlockedSites() {
 	chrome.storage.sync.get('blockedSites', (data) => {
-		 blockedSites = !data.blockedSites ? [''] : data.blockedSites
+		 blockedSites = !data.blockedSites ? [] : data.blockedSites
 	})
 }
