@@ -7,7 +7,7 @@ window.onload=block()
 function block() {
 	const elements = document.getElementsByClassName('g')
 
-	if (!elements && getBlockedSites().length > 0) { return 0 }
+	if (!elements || !getBlockedSites() || getBlockedSites().length === 0) { return 0 }
 
 	let countOfBlockedElements = 0
 	for (const element of elements) {
