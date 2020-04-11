@@ -7,16 +7,10 @@ window.onload=block()
 function block() {
 	const elements = document.getElementsByClassName('g')
 
-	if (!elements || !getBlockedSites() || getBlockedSites().length === 0) { return 0 }
+	if (inputsValid(elements, getBlockedSites())) { return 0 }
 
-	let countOfBlockedElements = 0
-	for (const element of elements) {
-		if (shouldBlock(element)) {
-			element.setAttribute("style", "display:none;")
-			countOfBlockedElements++
-		}
-	}
-	return countOfBlockedElements
+	return elements.filter(element => shouldBlock(element))
+				   .map(element => hide(element)).length
 }
 
 function shouldBlock(element) {
@@ -25,6 +19,14 @@ function shouldBlock(element) {
 
 function hasBlockedSources(element) {
 	return getBlockedSites().filter(source => element.innerText.includes(source)).length > 0
+}
+
+function hide(element) {
+	element.setAttribute('style', 'display:none;')
+}
+
+function inputsValid(elements, blockedSites) {
+	return !elements || !blockedSites || blockedSites.length === 0
 }
 
 function getBlockedSites() {
