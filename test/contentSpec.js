@@ -25,6 +25,12 @@ describe('Test taking a search page hiding blocked sources', () => {
 		spyOn(document, 'getElementsByClassName').and.returnValue(TestData.getSearchElements(TestData.dailyMailCoUk()))
 		expect(block()).toEqual(0)
 	})
+
+	it('should block 0 search elements when blockedSources null', () => {
+		spyOn(window, 'getBlockedSites').and.returnValue(null)
+		spyOn(document, 'getElementsByClassName').and.returnValue(TestData.getSearchElements(TestData.dailyMailCoUk()))
+		expect(block()).toEqual(0)
+	})
 })
 
 class TestData {
