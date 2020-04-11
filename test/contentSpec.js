@@ -1,20 +1,28 @@
 describe('Test taking a search page hiding blocked sources', () => {
 	beforeEach(() => {
-		spyOn(window, 'getBlockedSites').and.returnValue(['businessinsider.com', 'dailymail.co.uk', 'dailyexpress.co.uk', 'fool.co.uk'])
 	})
 
-	it('should block 1 source that contains dailymail.co.uk', () => {
+	it('should block 1 search element that contains dailymail.co.uk', () => {
+		spyOn(window, 'getBlockedSites').and.returnValue(['businessinsider.com', 'dailymail.co.uk', 'dailyexpress.co.uk', 'fool.co.uk'])
 		spyOn(document, 'getElementsByClassName').and.returnValue(TestData.getSearchElements(TestData.dailyMailCoUk()))
 		expect(block()).toEqual(1)
 	})
 
-	it('should block 0 source when no source contains dailymail.co.uk', () => {
+	it('should block 0 search elements when no source contains dailymail.co.uk', () => {
+		spyOn(window, 'getBlockedSites').and.returnValue(['businessinsider.com', 'dailymail.co.uk', 'dailyexpress.co.uk', 'fool.co.uk'])
 		spyOn(document, 'getElementsByClassName').and.returnValue(TestData.getSearchElements(TestData.speedTestCom()))
 		expect(block()).toEqual(0)
 	})
 
-	it('should block 0 source when search elements null', () => {
+	it('should block 0 search elements when search elements null', () => {
+		spyOn(window, 'getBlockedSites').and.returnValue(['businessinsider.com', 'dailymail.co.uk', 'dailyexpress.co.uk', 'fool.co.uk'])
 		spyOn(document, 'getElementsByClassName').and.returnValue(null)
+		expect(block()).toEqual(0)
+	})
+
+	it('should block 0 search elements when blockedSources empty', () => {
+		spyOn(window, 'getBlockedSites').and.returnValue([''])
+		spyOn(document, 'getElementsByClassName').and.returnValue(TestData.getSearchElements(TestData.dailyMailCoUk()))
 		expect(block()).toEqual(0)
 	})
 })
