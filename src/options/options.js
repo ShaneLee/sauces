@@ -9,7 +9,7 @@ function save_options() {
 }
 
 function sourcesToArray(sources) {
-	return sources.trim().split('\n').map(val => val.trim()).filter(val => val)
+	return !sources ? [] : sources.trim().split('\n').map(val => val.trim()).filter(val => val)
 }
 
 function restore_options() {

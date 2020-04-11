@@ -76,6 +76,24 @@ describe('Test converting user-entered sources to array', () => {
 		spyOn(document, 'getElementById').and.returnValue(sources)
 		expect(sourcesToArray(sources)).toEqual(['dailymail.co.uk', 'businessinsider.com', 'fool.co.uk', 'express.co.uk'])
 	})
+
+	it('should take a space and convert it to an empty array', () => {
+		const sources = ' '
+		spyOn(document, 'getElementById').and.returnValue(sources)
+		expect(sourcesToArray(sources)).toEqual([])
+	})
+	
+	it('should take an empty string and convert it to an empty array', () => {
+		const sources = ''
+		spyOn(document, 'getElementById').and.returnValue(sources)
+		expect(sourcesToArray(sources)).toEqual([])
+	})
+
+	it('should take a null value and convert it to an empty array', () => {
+		const sources = null
+		spyOn(document, 'getElementById').and.returnValue(sources)
+		expect(sourcesToArray(sources)).toEqual([])
+	})
 })
 
 
