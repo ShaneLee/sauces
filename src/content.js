@@ -2,14 +2,19 @@
 
 let blockedSites = setBlockedSites()
 
-window.onload=block()
+window.onload=init()
+
+function init() {
+	setBlockedSites()
+	block()
+}
 
 function block() {
 	const elements = document.getElementsByClassName('g')
 
 	if (inputsValid(elements, getBlockedSites())) { return 0 }
 
-	return elements.filter(element => shouldBlock(element))
+	return [...elements].filter(element => shouldBlock(element))
 				   .map(element => hide(element)).length
 }
 
