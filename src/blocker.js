@@ -10,3 +10,7 @@ function setBlockedSites() {
 		block()
 	})
 }
+
+function isBlocked(details) {
+	return getBlockedSites().filter(source => details.url.includes(source)).length > 0
+}

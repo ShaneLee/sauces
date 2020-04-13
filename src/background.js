@@ -18,6 +18,7 @@ chrome.webRequest.onBeforeRequest.addListener(
         ["blocking"])
 
 function redirectSources(details) {
+	if (!redirectEnabled) return
 	count++
 	setTimeout(() => { count = 0 }, 100);
 	if (count == 1 && isBlocked(details)) {
@@ -25,7 +26,4 @@ function redirectSources(details) {
 	}
 }
 
-function isBlocked(details) {
-	return getBlockedSites().filter(source => details.url.includes(source)).length > 0
-}
 
