@@ -1,7 +1,5 @@
 'use strict'
 
-let blockedSites = setBlockedSites()
-
 function block() {
 	const elements = findElements()
 
@@ -37,17 +35,6 @@ function findSearchCards() {
 
 function findSearchListings() {
 	return !document.getElementsByClassName('g') ? [] : document.getElementsByClassName('g')
-}
-
-function getBlockedSites() {
-	return blockedSites
-}
-
-function setBlockedSites() {
-	chrome.storage.sync.get('blockedSites', (data) => {
-		blockedSites = !data.blockedSites ? [] : data.blockedSites
-		block()
-	})
 }
 
 setTimeout(() => { block() }, 3000) // bodge for google finance
