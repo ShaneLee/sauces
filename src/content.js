@@ -1,6 +1,6 @@
 'use strict'
 
-let blockedSites = setBlockedSites()
+let test = setBlockedSites()
 
 function block() {
 	const elements = findElements()
